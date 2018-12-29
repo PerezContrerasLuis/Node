@@ -11,23 +11,23 @@ setTimeout(()=>{
 */
 
 
-let getUsuarioById = (id,callback) => {
+let getUsuarioById = (id, callback) => {
     let usuario = {
-        nombre : 'Luis',
+        nombre: 'Luis',
         id
     };
-    if(id == 20){
+    if (id == 20) {
         callback(`El usuario con id  ${id}, no existe en la BD`);
     } else {
-        callback(null,usuario);
+        callback(null, usuario);
     }
-    
+
 }
 
-getUsuarioById(20,(err,usuario)=>{
-    if(err){
+getUsuarioById(20, (err, usuario) => {
+    if (err) {
         console.log(err);
     } else {
-        console.log('usuario de base de datos',usuario);
+        console.log('usuario de base de datos', usuario);
     }
 });
