@@ -1,11 +1,12 @@
 //ejemplos de problemas comnunes de callback
 /*
 * obtenemos los datos de un empleado por medio del ID 
-* parte 1 de 2 
+* parte 2 de 2 
 */
 let empleados = [
     {id:1,nombre:'luis'},
-    {id:2,nombre:'uzumaky'}
+    {id:2,nombre:'uzumaky'},
+    {id:3,nombre:'gohan'}
 ];
 
 let salarios = [
@@ -28,11 +29,29 @@ let getEmpleado  = (id , callback) => {
    }
 }
 
+let getSalario = (empleado, callback) =>{
+    salariosDb = salarios.find(salario =>{
+        return  salario.id === empleado.id;
+    });
 
-getEmpleado(20,(err,empleado)=>{
+    if(!salariosDb){
+        callback(`El empleado ${empleado.nombre} no cuenta con salario definido`);
+    } else {
+        callback(null,{nombre :empleado.nombre,salarios:salariosDb.salario});
+    }
+}
+
+getEmpleado(1,(err,empleado)=>{
     if(err){
         return console.log(err);
     }
 
-    console.log(empleado);
+    //console.log(empleado);
+    // llamamos a la funcion getSalario
+    getSalario(empleado,(err,emp)=>{
+        if(err){
+            return console.log(err);
+        }
+        return console.log(emp);
+    });
 });
